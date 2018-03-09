@@ -1,0 +1,111 @@
+$interval: 250ms;
+body {
+  background: #fefefe;
+}
+main {
+  filter: url('#goo');
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+main svg {
+  fill: white;
+}
+#toggle {
+  display: none;
+}
+a, label {
+  position: absolute;
+  background: linear-gradient(to bottom, #56ea8c, #37d892, #1f9d9c);
+  left: 50%;
+  top: 50%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+  padding: 14px;
+  outline: none;
+  box-sizing: border-box;
+}
+a {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.935, 0.000, 0.340, 1.330);
+  transition-duration: $interval;
+}
+a:hover, a:focus {
+  background: linear-gradient(to bottom, #ff4141, #b30000);
+}
+label {
+  z-index: 2;
+  cursor: pointer;
+}
+#toggle:checked+label {
+  animation: ball $interval*10 ease-out;
+}
+@keyframes ball {
+  0% { transform: scale(1, 1); }
+  /*7% { transform: scale(1, 1); }
+  10% { transform: scale(1, 1); }*/
+  17% { transform: scale(1.4, 1.4); }
+  20% { transform: scale(1, 1); }
+  27% { transform: scale(1.3, 1.3); }
+  30% { transform: scale(1, 1); }
+  37% { transform: scale(1.2, 1.2); }
+  40% { transform: scale(1, 1); }
+  /*47% { transform: scale(1, 1); }
+  50% { transform: scale(1, 1); }*/
+  57% { transform: scale(1.4, 1.4); }
+  60% { transform: scale(1, 1); }
+  67% { transform: scale(1.3, 1.3); }
+  70% { transform: scale(1, 1); }
+  77% { transform: scale(1.2, 1.2); }
+  80% { transform: scale(1, 1); }
+  /*87% { transform: scale(1, 1); }
+  90% { transform: scale(1, 1); }
+  97% { transform: scale(1, 1); }*/
+  100% { transform: scale(1, 1); }
+}
+
+$radius: 135px;
+$shift-x: 15px;
+$start-delay: $interval+$interval*0.45;
+$tick: 0;
+$sin45: 0.70710678;
+
+#toggle:checked~nav a:nth-child(1) {
+  transform: translate(-($radius*$sin45+$shift-x), -$radius*$sin45);
+  transition-delay: $start-delay + $interval*$tick;
+}
+
+$tick: 1;
+#toggle:checked~nav a:nth-child(2) {
+  transform: translate(-($radius+$shift-x), 0);
+  transition-delay: $start-delay + $interval*$tick;
+}
+
+$tick: 2;
+#toggle:checked~nav a:nth-child(3) {
+  transform: translate(-($radius*$sin45+$shift-x), $radius*$sin45);
+  transition-delay: $start-delay + $interval*$tick;
+}
+
+$tick: 4;
+#toggle:checked~nav a:nth-child(4) {
+  transform: translate($radius*$sin45+$shift-x, -$radius*$sin45);
+  transition-delay: $start-delay + $interval*$tick;
+}
+
+$tick: 5;
+#toggle:checked~nav a:nth-child(5) {
+  transform: translate($radius+$shift-x, 0);
+  transition-delay: $start-delay + $interval*$tick;
+}
+
+$tick: 6;
+#toggle:checked~nav a:nth-child(6) {
+  transform: translate($radius*$sin45+$shift-x, $radius*$sin45);
+  transition-delay: $start-delay + $interval*$tick;
+}
